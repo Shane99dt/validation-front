@@ -11,7 +11,7 @@ const User = () => {
 
   useEffect(() => {
     fetchUser()
-  }, [])
+  }, [slug])
 
   const fetchUser = async () => {
     const request = await fetch(`http://localhost:5000/users/${slug}`)
@@ -24,7 +24,7 @@ const User = () => {
     <Container>
       <H1>{user.name}</H1>
       <div className="flex sm:flex-row flex-col sm:gap-5">
-        <img src={user.profile_picture} className="h-60 rounded-lg my-5" alt={`${user.name}-image`}/>
+        <img src={user.profile_picture ? (user.profile_picture):('https://icon-library.com/images/default-user-icon/default-user-icon-8.jpg')} className="h-60 rounded-lg my-5" alt={user.name}/>
         <div className="flex justify-center flex-col">
           <H3 className='capitalize'>From : {user.city}</H3>
           <H3>Email : {user.email}</H3>

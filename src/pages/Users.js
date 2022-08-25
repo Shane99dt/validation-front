@@ -20,7 +20,7 @@ const Users = () => {
   return(
     <Container>
       <H1>Users</H1>
-      <section className="flex flex-row flex-wrap">
+      <section className="flex sm:flex-row flex-wrap flex-col sm:gap-0 gap-5 items-center">
         {users.map((user, id) => {
           return <Card key={`${user.slug}-${id}`} name={user.name} slug={user.slug} city={user.city} image={user.profile_picture} />
         })}
