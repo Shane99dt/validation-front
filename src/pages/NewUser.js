@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Container from "../components/Container"
 import H1 from "../components/H1"
-import H3 from "../components/H3"
 import Input from "../components/Input"
 import Button from "../components/Button"
+import Select from "../components/Select"
 
 
 const NewUser = () => {
-  const [ user, setUser ] = useState([])
-  const params = useParams()
-  const { slug } = params
   const [ userName, setUserName ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ city, setCity ] = useState('')
   const [ image, setImage ] = useState('')
+
   const navigate = useNavigate()
 
   const handleChangeUserName = e => {
@@ -38,6 +36,7 @@ const NewUser = () => {
     setImage(e.target.value)
   }
 
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -55,7 +54,6 @@ const NewUser = () => {
       body: JSON.stringify(newUser)
     })
 
-    console.log(request.status)
 
     if(request.status === 201){
       navigate('/users')
@@ -70,32 +68,12 @@ const NewUser = () => {
       <H1>New User</H1>
       <form className="w-full max-w-lg" onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
-          {/* <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-              First Name
-            </label>
-            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane"/>
-            <p className="text-red-500 text-xs italic">Please fill out this field.</p>
-          </div>
-          <div className="w-full md:w-1/2 px-3">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-              Last Name
-            </label>
-            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe"/>
-          </div> */}
           <Input
             label="name"
             placeholder="Name"
             labelId = "userName"
             type="text"
             onChange={handleChangeUserName}
-            />
-          <Input
-            label="email"
-            placeholder="Email"
-            labelId = "userEmail"
-            type="email"
-            onChange={handleChangeEmail}
             />
           <Input
             label="password"
@@ -105,18 +83,31 @@ const NewUser = () => {
             onChange={handleChangePassword}
             />
           <Input
+            label="email"
+            placeholder="Email"
+            labelId = "userEmail"
+            type="email"
+            onChange={handleChangeEmail}
+            />
+          <Input
             label="image"
             placeholder="Image"
             labelId = "userImage"
             type="text"
             onChange={handleChangeImage}
             />
-          <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" onChange={handleChangeCity}>
+          {/* <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" onChange={handleChangeCity}>
                 <option value="Paris">Paris</option>
                 <option value="Los Angeles">Los Angeles</option>
                 <option value="Tokyo">Tokyo</option>
-          </select>
+          </select> */}
+          <Select
+            label="City"
+            labelId = "userCity"
+            onSelectChange={handleChangeCity}
+            />
         </div>
+          
         <Button
           text="Add new user"
           type="submit"
