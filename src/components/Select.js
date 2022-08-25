@@ -1,5 +1,5 @@
 const Select = ({ label, labelId, onSelectChange }) => {
-  const selectOptions = ["paris", "los-angeles", 'tokyo']
+  const selectOptions = ["paris", "los angeles", 'tokyo']
 
   return(
 
