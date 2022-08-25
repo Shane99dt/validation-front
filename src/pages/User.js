@@ -26,7 +26,7 @@ const User = () => {
       <div className="flex sm:flex-row flex-col sm:gap-5">
         <img src={user.profile_picture} className="h-60 rounded-lg my-5" alt={`${user.name}-image`}/>
         <div className="flex justify-center flex-col">
-          <H3>From : {user.city}</H3>
+          <H3 className='capitalize'>From : {user.city}</H3>
           <H3>Email : {user.email}</H3>
         </div>
       </div>
